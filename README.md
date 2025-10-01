@@ -54,7 +54,7 @@ SummerProject2025/
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/yourusername/SummerProject2025.git
+git clone https://github.com/tungnguyenasu/MovieSearchApp.git
 cd SummerProject2025
 ```
 
@@ -114,7 +114,7 @@ curl -X POST http://localhost:8000/api/v1/reviews -H "Content-Type: application/
 
 **Tung Nguyen**  
 Computer Science Student @ Arizona State University  
-GitHub: [@yourusername](https://github.com/yourusername)
+GitHub: [@tungnguyenasu](https://github.com/tungnguyenasu)
 
 ---
 
