@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>
+      Movie Site
+    </title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <meta charset="UTF-8">
+  </head>
+
+  <body>
+    <div class = "topnav">
+      <a class = "active" href="#">Movie Site</a>
+      <div class="sea rch-container">
+        <form role="search" id="form">
+            <input type="search" id="query" name="q" placeholder="search..">
+            <button type="submit">Search</button>
+        </form>
+        <h2 style="color:white; padding-left:16px;">Leave a Review</h2>
+        <form id="reviewForm" style="padding-left:16px;">
+          <input type="text" id="movieTitle" placeholder="Movie Title" required><br><br>
+          <input type="text" id="reviewer" placeholder="Your Name" required><br><br>
+          <textarea id="reviewText" placeholder="Write your review..." required rows="4" cols="40"></textarea><br><br>
+          <button type="submit">Submit Review</button>
+        </form>
+
+        <h2 style="color:white; padding-left:16px;">Reviews</h2>
+        <div id="reviews-section" style="padding:16px;"></div>
+      </div>
+    </div>
+
+  <div style = "padding-left:16px">
+    <section id="section">
+
+    </section>
+  </body>
+
+  
+  
+</html>

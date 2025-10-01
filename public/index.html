@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>
+      Movie Site
+    </title>
+    <link rel="stylesheet" href="style.css">
+  </head>
+
+  <body>
+    <div class = "topnav">
+      <a class = "active" href="#">Movie Site</a>
+      <div class="search-container">
+        <form role="search" id="form">
+          <input type="search" id="query" name="q" placeholder="search.."
+        </form>
+      </div>
+    </div>
+
+  <div style = "padding-left:16px">
+    <section id="section">
+
+    </section>
+
+    <h2 style="color:white;">Add a New Movie</h2>
+    <form id="addMovieForm">
+      <input type="text" id="newTitle" placeholder="Title" required><br>
+      <input type="text" id="newPoster" placeholder="Poster URL" required><br>
+      <textarea id="newDesc" placeholder="Short description" required></textarea><br>
+      <button type="submit">Add Movie</button>
+    </form>
+    
+    <button onclick="alert('Liked!')">👍 Like</button>
+    <button onclick="alert('Followed this reviewer!')">👤 Follow</button>
+
+    <h2 style="color:white; padding-left:16px;">User-Contributed Movies</h2>
+    <section id="user-movies" style="padding-left:16px; display: flex; flex-wrap: wrap; gap: 20px;"></section>
+
+
+  </body>
+
+  <script src="script.js"></script>
+  
+</html>
