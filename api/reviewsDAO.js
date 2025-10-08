@@ -36,12 +36,14 @@ class ReviewsDAO {
     }
   }
 
-  static async addReview(movieTitle, reviewer, reviewText) {
+  static async addReview(movieTitle, reviewer, reviewText, movieId, userId) {
     try {
       const reviewDoc = {
         movieTitle,
         reviewer,
         reviewText,
+        movieId: movieId || null,
+        userId: userId || null,
         createdAt: new Date()
       };
       return await reviews.insertOne(reviewDoc);
@@ -53,6 +55,15 @@ class ReviewsDAO {
 
   static async getReviews() {
     return await reviews.find().sort({ createdAt: -1 }).toArray();
+  }
+
+  static async getReviewsByMovieId(movieId) {
+    try {
+      return await reviews.find({ movieId }).sort({ createdAt: -1 }).toArray();
+    } catch (e) {
+      console.error(`Unable to get reviews by movie ID: ${e}`);
+      return { error: e };
+    }
   }
 
   static async followReviewer(reviewer) {

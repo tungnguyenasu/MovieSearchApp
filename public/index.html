@@ -10,11 +10,18 @@
 
   <body>
     <div class = "topnav">
-      <a class = "active" href="#">Movie Site</a>
+      <a class = "active" href="#" id="homeLink">Movie Site</a>
       <div class="search-container">
         <form role="search" id="form">
-          <input type="search" id="query" name="q" placeholder="search.."
+          <input type="search" id="query" name="q" placeholder="search..">
+          <button type="submit" style="background: none; border: none; color: white; cursor: pointer; padding: 5px;">🔍</button>
         </form>
+      </div>
+      <div class="auth-container">
+        <button id="loginBtn" class="auth-btn">Login</button>
+        <button id="signupBtn" class="auth-btn">Sign Up</button>
+        <span id="userInfo" style="color: white; display: none;"></span>
+        <button id="logoutBtn" class="auth-btn" style="display: none;">Logout</button>
       </div>
     </div>
 
@@ -23,20 +30,143 @@
 
     </section>
 
-    <h2 style="color:white;">Add a New Movie</h2>
-    <form id="addMovieForm">
-      <input type="text" id="newTitle" placeholder="Title" required><br>
-      <input type="text" id="newPoster" placeholder="Poster URL" required><br>
-      <textarea id="newDesc" placeholder="Short description" required></textarea><br>
-      <button type="submit">Add Movie</button>
-    </form>
-    
-    <button onclick="alert('Liked!')">👍 Like</button>
-    <button onclick="alert('Followed this reviewer!')">👤 Follow</button>
+    <!-- Login Modal -->
+    <div id="loginModal" class="modal" style="display: none;">
+      <div class="modal-auth-container">
+        <!-- Left Panel - Login Form -->
+        <div class="auth-left-panel">
+          <div class="auth-content">
+            <!-- Logo and Branding -->
+            <div class="auth-logo">
+              <div class="logo-text">
+                <span class="logo-main">Movie</span>
+                <span class="logo-icon">🎬</span>
+                <span class="logo-main">Site</span>
+              </div>
+              <p class="tagline">Discover amazing movies</p>
+            </div>
+            
+            <!-- Email Input -->
+            <div class="email-section">
+              <input type="email" id="loginEmail" placeholder="Email address" class="email-input">
+              <button type="button" class="continue-btn" id="emailContinueBtn">CONTINUE</button>
+            </div>
+            
+            <!-- Divider -->
+            <div class="divider">
+              <span>OR</span>
+            </div>
+            
+            <!-- Social Login Buttons -->
+            <div class="social-login">
+              <button class="social-btn google-btn" id="googleLoginBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24">
+                  <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                  <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                  <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/>
+                  <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/>
+                </svg>
+                CONTINUE WITH GOOGLE
+              </button>
+              
+              <button class="social-btn apple-btn" id="appleLoginBtn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
+                </svg>
+                CONTINUE WITH APPLE
+              </button>
+            </div>
+            
+            <!-- Password Section (Hidden Initially) -->
+            <div class="password-section" id="passwordSection" style="display: none;">
+              <input type="password" id="loginPassword" placeholder="Password" class="password-input">
+              <button type="submit" class="continue-btn" id="loginSubmitBtn">SIGN IN</button>
+            </div>
+            
+            <!-- Help Link -->
+            <div class="help-section">
+              <a href="#" class="help-link">Having trouble logging in?</a>
+            </div>
+            
+            <!-- Footer -->
+            <div class="auth-footer">
+              <p>By continuing, you agree to the <a href="#" class="footer-link">Terms and Policies</a> and the <a href="#" class="footer-link">Privacy Policy</a> and to receive email from <a href="#" class="footer-link">MovieSite</a>.</p>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Right Panel - Promotional Content -->
+        <div class="auth-right-panel">
+          <button class="close-btn" id="closeLogin">×</button>
+          <div class="promo-content">
+            <div class="promo-icon">🍿</div>
+            <h3>Write reviews, add movies to your watchlist, and more!</h3>
+          </div>
+        </div>
+      </div>
+    </div>
 
-    <h2 style="color:white; padding-left:16px;">User-Contributed Movies</h2>
-    <section id="user-movies" style="padding-left:16px; display: flex; flex-wrap: wrap; gap: 20px;"></section>
+    <!-- Signup Modal -->
+    <div id="signupModal" class="modal" style="display: none;">
+      <div class="modal-auth-container">
+        <!-- Left Panel - Signup Form -->
+        <div class="auth-left-panel">
+          <div class="auth-content">
+            <!-- Logo and Branding -->
+            <div class="auth-logo">
+              <div class="logo-text">
+                <span class="logo-main">Movie</span>
+                <span class="logo-icon">🎬</span>
+                <span class="logo-main">Site</span>
+              </div>
+              <p class="tagline">Join our movie community</p>
+            </div>
+            
+            
+            <!-- Signup Form -->
+            <form id="signupForm" class="signup-form">
+              <div class="form-row">
+                <input type="text" id="signupUsername" placeholder="Username or Phone" class="form-input" required>
+                <input type="password" id="signupPassword" placeholder="Password" class="form-input" required>
+                <input type="password" id="signupConfirmPassword" placeholder="Confirm password" class="form-input" required>
+              </div>
+              
+              <button type="submit" class="continue-btn">CREATE ACCOUNT</button>
+              
+              <!-- Footer inside form -->
+              <div class="auth-footer">
+                <p>Already have an account? <a href="#" id="switchToLogin" class="footer-link">Sign in</a></p>
+              </div>
+            </form>
+          </div>
+        </div>
+        
+        <!-- Right Panel - Promotional Content -->
+        <div class="auth-right-panel">
+          <button class="close-btn" id="closeSignup">×</button>
+          <div class="promo-content">
+            <div class="promo-icon">🎭</div>
+            <h3>Create your movie profile and start reviewing!</h3>
+          </div>
+        </div>
+      </div>
+    </div>
 
+    <!-- Movie Details Modal -->
+    <div id="movieModal" class="modal" style="display: none;">
+      <div class="modal-content movie-modal">
+        <span class="close" id="closeMovie">&times;</span>
+        <div id="movieDetails"></div>
+        <div id="movieReviews"></div>
+        <div id="addReviewSection" style="display: none;">
+          <h3>Add a Review</h3>
+          <form id="addReviewForm">
+            <textarea id="reviewText" placeholder="Write your review..." required></textarea>
+            <button type="submit">Submit Review</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
   </body>
 

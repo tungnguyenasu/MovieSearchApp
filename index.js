@@ -5,6 +5,7 @@ const app = require("./server.js");
 const mongodb = require("mongodb");
 const ReviewsDAO = require("./api/reviewsDAO.js");
 const MoviesDAO = require("./api/moviesDAO.js");
+const UsersDAO = require("./api/usersDAO.js");
 
 const MongoClient = mongodb.MongoClient;
 const mongo_username = process.env["MONGO_USERNAME"];
@@ -37,6 +38,7 @@ MongoClient.connect(
   .then(async client => {
     await ReviewsDAO.injectDB(client);
     await MoviesDAO.injectDB(client);
+    await UsersDAO.injectDB(client);
     app.listen(port, () => {
       console.log(`🚀 listening on port ${port}`);
       if (!client) {
